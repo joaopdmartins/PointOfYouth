@@ -6,29 +6,30 @@ import operator
 from flask import Request, jsonify
 
 categories = [
+    { 'category': 'Covid-19' },
+    { 'category': 'Digital Civility' },
+    { 'category': "Human Rights" },
+    { 'category': 'Education' },
+    { 'category': 'Culture' },
+    { 'category': 'Work Policies' },
+    { 'category': 'Crime' },
+    { 'category': 'Finance' },
     { 'category': 'Social Skills' },
     { 'category': 'Web Skills' },
-    { 'category': "Shopping carts' coins" },
-    { 'category': 'A' },
-    { 'category': 'B' },
-    { 'category': 'C' },
-    { 'category': 'D' },
-    { 'category': 'E' },
-    { 'category': 'F' },
-    { 'category': 'G' },
-    { 'category': 'H' },
-    { 'category': 'I' },
+    { 'category': 'Politics' },
+    { 'category': '' },
 ]
 
-'''
-    dicionários de userid => category => results
-'''
 user_results = {}
+''' dicionários de userid => category => results
+'''
 
 random.seed(time.time())
 
-
 def trendsForUser(userid :int):
+    ''' returns list of trends tailored to userid
+    '''
+
     trends = copy.deepcopy(categories)
 
     positions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -47,13 +48,19 @@ def trendsForUser(userid :int):
 
     return jsonify(trends)
 
+
 def saveCategoryResult(request :Request, userid :int, category :str):
+    ''' save response to user questionary
+    '''
     user_results[userid] = {}
     user_results[userid][category] = request.get_json(force=True)
 
     return jsonify({ 'error': None, 'result': 'Saved' })
 
 def getCategoryResult(userid :int, category :str):
+    ''' returns user's response to category
+    '''
+
     if userid in user_results and category in user_results[userid]:
         return jsonify(user_results[userid][category])
     else:
@@ -61,6 +68,8 @@ def getCategoryResult(userid :int, category :str):
 
 
 def getUserCategories(userid :int):
+    ''' returns user tailored categories
+    '''
     user_categories = copy.deepcopy(categories)
 
     for c in user_categories:
