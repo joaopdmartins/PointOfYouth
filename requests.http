@@ -1,0 +1,23 @@
+@baseUrl=http://localhost:8080
+
+### Get trending
+GET {{baseUrl}}/trending
+
+### Save result
+POST {{baseUrl}}/category/Shopping carts' coins/results
+Content-Type: 'application/json'
+
+{
+    "response1": "true",
+    "response2": "skip",
+    "response3": "disagree",
+    "response4": "We should not have to insert a coin to use shopping cart. What if i need the coin to pay the bill?"
+}
+
+
+
+### Get result
+GET {{baseUrl}}/category/Shopping carts' coins/results
+
+### Get result
+GET {{baseUrl}}/user/categories
