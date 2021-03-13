@@ -19,5 +19,5 @@ Content-Type: 'application/json'
 ### Get result
 GET {{baseUrl}}/category/Shopping carts' coins/results
 
-### Get result
+### Get user tailored categories
 GET {{baseUrl}}/user/categories
